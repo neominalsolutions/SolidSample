@@ -18,10 +18,10 @@ namespace SolidSample.OCP
 
   // customerNumber sanal cüzdan için müşteri numarası
   // customerAccountNumber avans hesap numarası
-  public class PaymentService
+  public class BadPaymentService
   {
     private string _paymentType;
-    public PaymentService(string paymentType)
+    public BadPaymentService(string paymentType)
     {
       _paymentType = paymentType;
     }

@@ -6,11 +6,11 @@ using SolidSample.OCP;
 Console.WriteLine("Hello, World!");
 
 // OCP aykırı değişime açık gelişime kapalı
-var badPayment = new PaymentService("KrediKartı");
+var badPayment = new BadPaymentService("KrediKartı");
 badPayment.Pay(1500, "32432432", "324324", "324324", "Ali", null,null);
 
 
-var badPayment2 = new PaymentService("SanalKart");
+var badPayment2 = new BadPaymentService("SanalKart");
 badPayment2.Pay(1500,null, null, null, null, "32432432", null);
 
 

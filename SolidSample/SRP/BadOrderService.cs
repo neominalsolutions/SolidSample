@@ -29,7 +29,7 @@ namespace SolidSample.SRP
   }
 
 
-  public class OrderService
+  public class BadOrderService
   {
 
     /// <summary>
@@ -49,6 +49,7 @@ namespace SolidSample.SRP
        // Sipariş ile ilgili mail,sms kullanıcıya atmak (Bilgilendirme) (SMS Vodafone,Turcell)
        // Fatura kesme (E-Arşiv fatura) (LOGO, SPA geçtim)
 
+      // yukarıdakilerin hepsi tekrar kullanılabilir
 
     }
 
