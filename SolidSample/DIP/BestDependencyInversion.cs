@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolidSample.DIP
 {
+  // İki sınıf birbileri ile çalışırken araya bir soyut sınıf veya interface koyarak. Sınıfların birbirleri olan bağımlılığını koparırız.
   public interface ILogger
   {
     void Log(string message);
@@ -15,7 +16,7 @@ namespace SolidSample.DIP
   {
     public void Log(string message)
     {
-      throw new NotImplementedException();
+      Console.WriteLine("Database Logger");
     }
   }
 
@@ -23,7 +24,7 @@ namespace SolidSample.DIP
   {
     public void Log(string message)
     {
-      throw new NotImplementedException();
+      Console.WriteLine("XML Logger");
     }
   }
 
@@ -31,13 +32,13 @@ namespace SolidSample.DIP
   {
     public void Log(string message)
     {
-      throw new NotImplementedException();
+      Console.WriteLine("Text Logger");
     }
   }
 
 
 
-  public class BestUserRepository
+  public class BestDependencyInversion
   {
     private readonly List<ILogger> _loggers;
     private readonly ILogger _logger;
@@ -46,14 +47,19 @@ namespace SolidSample.DIP
     /// Delete işlemi için bu constructor kullan XmlLogger gönder.
     /// </summary>
     /// <param name="logger"></param>
-    public BestUserRepository(ILogger logger)
+    public BestDependencyInversion(ILogger logger)
     {
       _logger = logger;
     }
 
-    public BestUserRepository(List<ILogger> loggers)
+    public BestDependencyInversion(List<ILogger> loggers)
     {
       _loggers = loggers;
+    }
+
+    public void Log()
+    {
+      _logger.Log("Mesaj");
     }
 
     public void Create(User user)

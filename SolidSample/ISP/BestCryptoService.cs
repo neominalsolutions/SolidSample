@@ -16,6 +16,7 @@ namespace SolidSample.ISP
     string Encrypt(string plainText);
   }
 
+  // Hash alogitmasında sace Encrypte işlemi yapıcaz.
   public class Md5 : IEncryptor
   {
     public string Encrypt(string plainText)
@@ -24,6 +25,7 @@ namespace SolidSample.ISP
     }
   }
 
+  // Simetrik algoritmalar hem şifreleme hemde şifre çözme işlemlerini yaptığımız algoritmalardır
   public class Aes : IDecryptor, IEncryptor
   {
     public string Decrypt(string cipherText)

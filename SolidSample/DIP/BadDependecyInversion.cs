@@ -46,8 +46,9 @@ namespace SolidSample.DIP
   // xml logger da delete işlemleri için kullanılsın. KVKK kapsamında bir kayıt silindiğinde xml bir datayı E-devlete export etmemiz gerekiyor.
   // 2 somut örnek yani instance alınan 2 nesne birbirne referans almış. Böyle bir durumda DIP ters harekt etmiş oluyoruz.
   // Bu bağımlıktan kurtulmak için üst seviye nesnenin kullanacağı sınıflar bir arayüz yada bir base (abstract) sınıf vasıtası ile haberleşmelidir.
-  public class BadUserRepository
+  public class BadDependecyInversion
   {
+    //BadDependecyInversion sınfı FileLogger,DbLogger, XMLLogger instancelarının yönetiminden sorumlu hale geldi. Esnek bir yaklaşımı kaybetti. Tighyt Coupled bir sınıf. 
     private FileLogger flogger = new FileLogger();
     private DbLogger dblogger = new DbLogger();
     private XMLLogger XMLLogger= new XMLLogger();
