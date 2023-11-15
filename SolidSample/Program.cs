@@ -3,56 +3,59 @@ using SolidSample.DIP;
 using SolidSample.LSP;
 using SolidSample.OCP;
 
-Console.WriteLine("Hello, World!");
-
-// OCP aykırı değişime açık gelişime kapalı
-var badPayment = new BadPaymentService("KrediKartı");
-badPayment.Pay(1500, "32432432", "324324", "324324", "Ali", null,null);
 
 
-var badPayment2 = new BadPaymentService("SanalKart");
-badPayment2.Pay(1500,null, null, null, null, "32432432", null);
 
 
-var credit = new CreditCardPayment("Ali", "12324-342324-324", "12/23", "467");
-credit.Pay(1500);
+// OCP Sample
 
-//var m = new PaymentManager(credit);
-//var result = m.Pay(1500);
+// IF kodlarımız UI içerisinde olucak, gelen Use case isteğine göre hangi sınıftan instance alınacağını bulup ilgili yönlendirmeyi yapıcaz.
+// uygulama OPen-Close prensibine uygun ve polimorfik olarak çalışacak.
 
+// Prensetation Sunum katmanı => UI
+Console.WriteLine("Ödeme Şeklini giriniz Cash,Credit veya Virtual Wallet");
+string paymentType = Console.ReadLine();
 
-var vm = new VirtualCardPayment(customerNumber: "32324324324");
-vm.Pay(1250);
-//var m2 = new PaymentManager(vm);
-//var result2 = m2.Pay(1250);
+BestPaymentService paymentService;
 
-
-List<ILogger> loggers = new List<ILogger>();
-loggers.Add(new XmlLogger());
-loggers.Add(new DatabaseLogger());
-loggers.Add(new TextLogger());
-
-BestUserRepository br = new BestUserRepository(loggers);
-br.Create(new User { Id = 1, Name = "ali", SurName = "tan" });
-br.Delete(id: 1);
-
-var xmlLogger = new XmlLogger();
-BestUserRepository br2 = new BestUserRepository(xmlLogger);
-br.Delete(id: 1);
-
-var sq = new SquareShape();
-sq.Width = 5;
-sq.Height = 5;
+if(paymentType == "Cash")
+{
+  paymentService = new BestPaymentService(new CachePayment());
+  paymentService.Pay(16);
+}
+else if(paymentType == "Virtual Wallet")
+{
+  Console.WriteLine("Müşteri Numaranızı giriniz");
+  string customerNumber = Console.ReadLine();
+  paymentService = new BestPaymentService(new VirtualCardPayment(customerNumber));
+  paymentService.Pay(16);
+}
 
 
-var sqB = new BestSquare();
-sqB.Length = 5;
-sqB.GetPerimeter();
 
-var sqR = new BestRect();
-sqR.Length = 5;
-sqR.Width = 10;
-sqR.GetPerimeter();
+// Sample2 
+Console.WriteLine("Ne çizmek istersiniz");
+string cizilecek = Console.ReadLine();
 
-Console.ReadKey();
+if(cizilecek == "Kare")
+{
+  //SquareShape square = new SquareShape();
+
+  //Console.WriteLine("Kenar giriniz");
+  //int corner = int.Parse(Console.ReadLine());
+  //square.Height = corner;
+  //square.Width = corner;
+  //double perimeter = square.GetPerimeter();
+
+  Console.WriteLine("Kenar giriniz");
+  BestSquare bestSquare = new BestSquare();
+  bestSquare.Corner = int.Parse(Console.ReadLine());
+  double perimeter  = bestSquare.GetPerimeter();
+
+  Console.WriteLine($"çevre {perimeter}");
+}
+
+
+
+
 

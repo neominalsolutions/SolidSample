@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace SolidSample.LSP
 {
 
+  // Bir sınıf kalıtım alınan sınıfın özelliklerine uymak zorundadır.
+  // ortak özellikleri korumalıdır. 
+
   public abstract class BadShapeBase
   {
     public double Width { get; set; }
@@ -16,6 +19,7 @@ namespace SolidSample.LSP
     public abstract double GetArea();
   }
 
+  // Dikdörtgen
   public class RectShape : BadShapeBase
   {
 
@@ -36,23 +40,27 @@ namespace SolidSample.LSP
     public override double GetArea()
     {
 
-      if (this.Width == 0 && this.Height > 0)
+      if (this.Width == this.Height)
       {
         return this.Height * this.Height;
+      } 
+      else
+      {
+        throw new Exception("Bu şekil kare özelliği göstermiyor");
       }
-
-      return this.Width * this.Width;
     }
 
     public override double GetPerimeter()
     {
-      if (this.Width == 0 && this.Height > 0)
+      if (this.Width == this.Height)
       {
         return this.Height * 4;
+      } 
+      else
+      {
+        throw new Exception("Bu şekil kare olamaz");
       }
 
-
-      return this.Width * 4;
     }
   }
 

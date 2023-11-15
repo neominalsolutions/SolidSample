@@ -8,36 +8,57 @@ namespace SolidSample.LSP
 {
   public abstract class BestShapeBase
   {
-    public double Length { get; set; }
     public abstract double GetPerimeter();
     public abstract double GetArea();
   }
 
   public class BestSquare : BestShapeBase
   {
+    public double Corner { get; set; }
+
     public override double GetArea()
     {
-      return Math.Pow(this.Length,2);
+      return Math.Pow(this.Corner,2);
     }
 
     public override double GetPerimeter()
     {
-      return this.Length * 4;
+      return this.Corner * 4;
     }
   }
 
   public class BestRect : BestShapeBase
   {
     public double Width { get; set; }
+    public double Height { get; set; }
+
 
     public override double GetArea()
     {
-      return this.Length * this.Width;
+      return this.Width * this.Height;
     }
 
     public override double GetPerimeter()
     {
-      return 2 * this.Length + 2 * this.Width;
+      return 2 * this.Width + 2 * this.Height;
+    }
+  }
+
+  public class Triangle : BestShapeBase
+  {
+    public double Acorner { get; set; }
+    public double Bcorner { get; set; }
+    public double Ccorner { get; set; }
+
+
+    public override double GetArea()
+    {
+      throw new NotImplementedException();
+    }
+
+    public override double GetPerimeter()
+    {
+      throw new NotImplementedException();
     }
   }
 }

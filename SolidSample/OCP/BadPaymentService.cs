@@ -46,6 +46,7 @@ namespace SolidSample.OCP
 
       if(_paymentType == "KrediKartı")
       {
+        PayWithCredit(paymentAmount, cardNumber, thru, cvv, cardOwner);
         // kredi kartı işlemleri
       } else if(_paymentType =="SanalCüzdan")
       {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolidSample.OCP
 {
+  // Bir operasyonun farklı şekiller polimorfik olarak yapıldığı durumlarda Open-Closed prensibini tercih ediyoruz.
 
   public enum OrderStatus
   {
@@ -59,8 +60,17 @@ namespace SolidSample.OCP
     }
   }
 
+  public class CachePayment : BasePaymentService
+  {
+    public override PaymentStatus Pay(decimal paymentAmount)
+    {
+      Console.WriteLine("Nakit hesap ile ödeme yapıldı");
+      return PaymentStatus.OK;
+    }
+  }
 
-  public class BestPaymentService:BasePaymentService
+
+  public class BestPaymentService
   {
     BasePaymentService _paymentService;
 
@@ -69,7 +79,7 @@ namespace SolidSample.OCP
        _paymentService = basePaymentService;
     }
 
-    public override PaymentStatus Pay(decimal paymentAmount)
+    public PaymentStatus Pay(decimal paymentAmount)
     {
       return _paymentService.Pay(paymentAmount);
     }

@@ -25,7 +25,6 @@ namespace SolidSample.SRP
     public string ProductName { get; set; }
     public decimal UnitPrice { get; set; }
 
-
   }
 
 

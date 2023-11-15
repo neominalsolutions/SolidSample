@@ -39,6 +39,8 @@ namespace SolidSample.SRP
 
   public class BestOrderService
   {
+    // facade  design Pattern
+    // bir sınıf karmaşık alt operasyonları yönetmek için başka sınıfları referans alır.
     private NotificationManager _notificationManager;
     private OrderRepository _orderRepository;
     private ShippmentManager _shipmentManager;
