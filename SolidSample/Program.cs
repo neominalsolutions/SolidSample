@@ -67,17 +67,16 @@ if(cizilecek == "Kare")
 //BestDependencyInversion bestDependencyInversion = new BestDependencyInversion(new TextLogger());
 //bestDependencyInversion.Create(new User());
 
+
 // IoC ile instance üretimlerini Net Core framework bırakacağız.
-
-var container = new ServiceCollection();
+var services = new ServiceCollection();
   // interface hangi sınıfın instance'ı ile çalışacağını container register ediyoruz.
-  container.AddTransient<ILogger, XmlLogger>();
-
-  var serviceProvider = container.BuildServiceProvider();
+  services.AddTransient<ILogger, XmlLogger>();
+//services.AddTransient<FileLogger>();
+  var container = services.BuildServiceProvider();
   // container tanımlanan register edilen servislerin uygulama genelinde çalışabilmesi için BuildServiceProvider methodunu kullanıyoruz.
-
   // resolve işlemi container üzerinden service çözümleme işlemi
-  var loggerInstance = serviceProvider.GetRequiredService<ILogger>();
+  var loggerInstance = container.GetRequiredService<ILogger>();
   BestDependencyInversion bI = new BestDependencyInversion(loggerInstance);
   bI.Log();
 

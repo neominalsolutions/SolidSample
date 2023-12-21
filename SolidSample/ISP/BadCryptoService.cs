@@ -15,19 +15,19 @@ namespace SolidSample.ISP
   }
 
   
-  public class BadCryptoService : ICrypto
+  public class BadCryptoService : ICrypto // HashService
   {
     // Decrpyte edemez.
     // Problem Hash alogritmaları gereye dönük şifre çözme işlemi gerçekleştiremez fakat ICrypto interface bizi bu duruma zorluyor
     // bu durumda decrypt methodu boşa çıkıyor.
-    public string Decrypt(string cipherText)
+    public string Decrypt(string cipherText) // dummy Method hataya müsait bir yapı
     {
       throw new NotImplementedException();
     }
 
     public string Encrypt(string plainText)
     {
-      throw new NotImplementedException();
+      return "324324A-324dsadaA";
     }
   }
 

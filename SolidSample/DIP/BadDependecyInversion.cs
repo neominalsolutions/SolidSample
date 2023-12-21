@@ -50,26 +50,26 @@ namespace SolidSample.DIP
   {
     //BadDependecyInversion sınfı FileLogger,DbLogger, XMLLogger instancelarının yönetiminden sorumlu hale geldi. Esnek bir yaklaşımı kaybetti. Tighyt Coupled bir sınıf. 
     private FileLogger flogger = new FileLogger();
-    private DbLogger dblogger = new DbLogger();
-    private XMLLogger XMLLogger= new XMLLogger();
+    //private DbLogger dblogger = new DbLogger();
+    //private XMLLogger XMLLogger= new XMLLogger();
 
     public void Create(User user)
     {
       // Dbye user insert ettik
       flogger.Log($"{user.Name} {user.SurName}");
-      dblogger.Log("");
+      //dblogger.Log("");
     }
 
     public void Delete(int id)
     {
       flogger.Log($"");
-      dblogger.Log("");
-      XMLLogger.Log("");
+      //dblogger.Log("");
+      //XMLLogger.Log("");
     }
 
     public void Update(User user)
     {
-      dblogger.Log("");
+      //dblogger.Log("");
     }
   }
 }
